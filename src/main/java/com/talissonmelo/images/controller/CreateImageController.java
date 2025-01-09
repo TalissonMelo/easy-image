@@ -3,7 +3,6 @@ package com.talissonmelo.images.controller;
 
 import com.talissonmelo.images.domain.Image;
 import com.talissonmelo.images.service.CreateImageService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,10 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
 public class CreateImageController {
-
-
     @Autowired
     private CreateImageService createImageService;
 
