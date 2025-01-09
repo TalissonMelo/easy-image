@@ -1,30 +1,36 @@
 package com.talissonmelo.images.controller;
 
 
+import com.talissonmelo.images.domain.Image;
+import com.talissonmelo.images.service.CreateImageService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
 public class CreateImageController {
 
+
+    @Autowired
+    private CreateImageService createImageService;
+
     @PostMapping("/v1/images")
     public ResponseEntity execute(@RequestParam("file") MultipartFile file,
                                   @RequestParam("name") String name,
-                                  @RequestParam("tags") List<String> tags) {
+                                  @RequestParam("tags") List<String> tags) throws IOException {
 
 
-        System.err.println(file.getOriginalFilename());
-        System.err.println(file.getSize());
-        System.err.println(name);
-        System.err.println(tags);
+        Image image = createImageService.createImage(file, name, tags);
 
-        return ResponseEntity.ok().build();
+
+        return ResponseEntity.status(201).body(image);
     }
 }
