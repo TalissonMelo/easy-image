@@ -9,8 +9,10 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.IOException;
+import java.net.URI;
 import java.util.List;
 
 @Service
@@ -20,8 +22,18 @@ public class CreateImageService {
     @Autowired
     private ImageRepository imageRepository;
 
-    public Image createImage(MultipartFile file, String name, List<String> tags) throws IOException {
+    public URI createImage(MultipartFile file, String name, List<String> tags) throws IOException {
         Image image = Image.to(name, file.getSize(), ImageExtension.valueOf(MediaType.valueOf(file.getContentType())), tags, file.getBytes());
-        return imageRepository.save(image);
+        imageRepository.save(image);
+        return buildImageURL(image);
+    }
+
+
+    private URI buildImageURL(Image image){
+        String imagePath = "/" + image.getImageId();
+        return ServletUriComponentsBuilder
+                .fromCurrentRequestUri()
+                .path(imagePath)
+                .build().toUri();
     }
 }

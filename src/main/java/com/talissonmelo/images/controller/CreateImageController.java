@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -24,9 +25,9 @@ public class CreateImageController {
                                   @RequestParam("tags") List<String> tags) throws IOException {
 
 
-        Image image = createImageService.createImage(file, name, tags);
+        URI image = createImageService.createImage(file, name, tags);
 
 
-        return ResponseEntity.status(201).body(image);
+        return ResponseEntity.created(image).build();
     }
 }
