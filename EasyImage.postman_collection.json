@@ -38,13 +38,13 @@
 					"formdata": [
 						{
 							"key": "name",
-							"value": "Talisson&Familia",
+							"value": "Talisson",
 							"type": "text"
 						},
 						{
 							"key": "file",
 							"type": "file",
-							"src": []
+							"src": "/C:/Users/T-GAMER/Downloads/1.jpg"
 						},
 						{
 							"key": "tags",
@@ -79,6 +79,94 @@
 							"key": "file",
 							"value": null,
 							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Image",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJraWQiOiJxYXBJNzlhR1dsT2VieE83akppV09wTGorWlRnWkYxeUhZMjcwRFhOeUNjPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJiNDA4NzRhOC00MDUxLTcwMjQtZDdhYy0zZWM0NTE2OTYwN2IiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfNnR4YXpoTktKIiwiY29nbml0bzp1c2VybmFtZSI6ImI0MDg3NGE4LTQwNTEtNzAyNC1kN2FjLTNlYzQ1MTY5NjA3YiIsIm9yaWdpbl9qdGkiOiIwMGM3MzVmNS03ZmI4LTQ4OTQtOWNiNi04YzVmMTYxZDM5NTkiLCJhdWQiOiI2ZG5haGpiMnFhbzZ2MTYxbmR0MjN2MW1vciIsImV2ZW50X2lkIjoiNGY2ZjEzMWUtN2M3MC00OTI1LWI2M2ItNjRlOTcyN2FiZWQwIiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE3MjkxNjUxMTksIm5hbWUiOiJUYWxpc3NvbiBNZWxvIiwiZXhwIjoxNzI5MTY4NzE5LCJpYXQiOjE3MjkxNjUxMTksImp0aSI6Ijc4YzUwOGNhLTlkYmYtNDc5OC04ZDFjLTM4ZjI4NTU0NzM0OSIsImVtYWlsIjoidGFsaXNzb25tZWxvcm9kcmlndWVzQGdtYWlsLmNvbSJ9.R20GYmMbGE4vHVefxZ8fv-7Etc40WM5e8Zos4FhnUpkWpVos5_L_zZVUPGKct3mRJ_AUrmqM7xnVp7-us-hunb59u0JhGCi1lpjOY9seOld3NLafZGQxxSRS6O5YxPf3qIvrz5RcydGRb_OCbiDBus732QEaVJEBm3IP6uvtnXZ0Le_4iZjYDPvohSmFDJ2xNPe29Nv4Rvq6Y1ZMnQDEiwpxv7SUJvUND4wBbZulyW_JDOxhzXewBCl4xPP94jVXT880DfGSGDW1bFrqVNFPuFXoJNSwk9d3oN1C4KWp694YPjPzKrLQmjb_FgfojR_RG_yRR5prVFgakJxYNOUVcg",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-UserID",
+						"value": "asdasd",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Talisson",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/T-GAMER/Downloads/1.jpg"
+						},
+						{
+							"key": "tags",
+							"value": "Imagem",
+							"type": "text"
+						},
+						{
+							"key": "tags",
+							"value": "Pessoal",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/images/:imageId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"images",
+						":imageId"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Talisson",
+							"disabled": true
+						},
+						{
+							"key": "file",
+							"value": null,
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "imageId",
+							"value": "16c95051-c058-408f-9407-f8565feafce0"
 						}
 					]
 				}

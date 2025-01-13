@@ -22,5 +22,7 @@ public enum ImageExtension {
         return Arrays.stream(values()).filter(ie -> ie.mediaType.equals(mediaType)).findFirst().orElse(null);
     }
 
-
+    public static MediaType valueOf(ImageExtension ImageExtension) {
+        return Arrays.stream(values()).filter(ie -> ie.equals(ImageExtension)).findFirst().map(extension -> extension.mediaType).orElse(null);
+    }
 }
