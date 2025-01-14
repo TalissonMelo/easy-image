@@ -1,9 +1,7 @@
 package com.talissonmelo.images.controller;
 
 
-import com.talissonmelo.images.domain.Image;
 import com.talissonmelo.images.service.CreateImageService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,8 +14,12 @@ import java.util.List;
 
 @RestController
 public class CreateImageController {
-    @Autowired
+
     private CreateImageService createImageService;
+
+    public CreateImageController(CreateImageService createImageService) {
+        this.createImageService = createImageService;
+    }
 
     @PostMapping("/v1/images")
     public ResponseEntity execute(@RequestParam("file") MultipartFile file,

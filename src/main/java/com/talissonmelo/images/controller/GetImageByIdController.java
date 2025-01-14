@@ -4,7 +4,6 @@ package com.talissonmelo.images.controller;
 import com.talissonmelo.images.domain.Image;
 import com.talissonmelo.images.domain.enums.ImageExtension;
 import com.talissonmelo.images.service.GetImageByIdService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class GetImageByIdController {
-    @Autowired
+
     private GetImageByIdService getImageByIdService;
+
+    public GetImageByIdController(GetImageByIdService getImageByIdService) {
+        this.getImageByIdService = getImageByIdService;
+    }
 
     @GetMapping("/v1/images/{imageId}")
     public ResponseEntity<byte[]> execute(@PathVariable String imageId) {
