@@ -20,7 +20,7 @@ public class AuthenticateUserController {
     }
 
 
-    @PostMapping("/v1/users")
+    @PostMapping("/v1/users/authenticate")
     public ResponseEntity execute(@Valid @RequestBody UserAuthenticateRequest request) {
 
         AccessToken accessToken = getAuthenticateUserService.findByEmailAndPassword(request.email(), request.password());

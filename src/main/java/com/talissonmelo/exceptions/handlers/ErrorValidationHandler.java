@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.nio.file.AccessDeniedException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,10 +31,22 @@ public class ErrorValidationHandler extends ResponseEntityExceptionHandler {
         Details details = new Details("Bad Request Exception",
                 HttpStatus.BAD_REQUEST.value(),
                 LocalDateTime.now(),
-                exception.getClass().getName() + " " + exception.getMessage(),
+                exception.getMessage(),
                 Arrays.asList());
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(details);
+    }
+
+    @ExceptionHandler(value = {AccessDeniedException.class})
+    protected ResponseEntity<Details> accessDeniedException(RuntimeException exception) {
+
+        Details details = new Details("Access Denied Exception",
+                HttpStatus.FORBIDDEN.value(),
+                LocalDateTime.now(),
+                exception.getMessage(),
+                Arrays.asList());
+
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(details);
     }
 
     @ExceptionHandler(value = {DataIntegrityViolationException.class})
@@ -41,7 +54,7 @@ public class ErrorValidationHandler extends ResponseEntityExceptionHandler {
         Details details = new Details("Check the registered data, there may be unique records already registered in the system.",
                 HttpStatus.BAD_REQUEST.value(),
                 LocalDateTime.now(),
-                exception.getClass().getName() + " " + exception.getMessage(),
+                exception.getMessage(),
                 Arrays.asList());
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(details);
@@ -72,8 +85,7 @@ public class ErrorValidationHandler extends ResponseEntityExceptionHandler {
             errors.add(new Field(name, message));
         }
 
-        Details error = new Details("Bad Request Exception", HttpStatus.BAD_REQUEST.value(), LocalDateTime.now(), ex.getClass().getName() + " " + ex.getMessage(), errors);
-
+        Details error = new Details("Bad Request Exception", HttpStatus.BAD_REQUEST.value(), LocalDateTime.now(), ex.getMessage(), errors);
 
         return super.handleExceptionInternal(ex, error, headers, status, request);
     }

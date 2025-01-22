@@ -5,6 +5,7 @@ import com.talissonmelo.security.jwt.service.JwtService;
 import com.talissonmelo.user.controller.response.AccessToken;
 import com.talissonmelo.user.domain.User;
 import com.talissonmelo.user.repository.UserRepository;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,6 @@ public class GetAuthenticateUserService {
             }
         }
 
-        return null;
+        throw new AccessDeniedException("Incorrect Username or Password");
     }
 }
