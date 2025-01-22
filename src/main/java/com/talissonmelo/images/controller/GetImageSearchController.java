@@ -2,18 +2,14 @@ package com.talissonmelo.images.controller;
 
 
 import com.talissonmelo.images.controller.response.ImageDTO;
-import com.talissonmelo.images.domain.Image;
 import com.talissonmelo.images.domain.enums.ImageExtension;
 import com.talissonmelo.images.service.GetImageSearchService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 public class GetImageSearchController {
