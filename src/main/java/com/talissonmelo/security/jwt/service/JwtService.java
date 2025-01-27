@@ -3,7 +3,7 @@ package com.talissonmelo.security.jwt.service;
 
 import com.talissonmelo.user.controller.response.AccessToken;
 import com.talissonmelo.user.domain.User;
-import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.*;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -44,9 +44,24 @@ public class JwtService {
         return Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
     }
 
-    private Map<String, Object> generateTokenClaims(User user){
+    private Map<String, Object> generateTokenClaims(User user) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("name", user.getName());
         return claims;
+    }
+
+    public String getEmailFromToken(String tokenJwt) {
+        try {
+            JwtParser build = Jwts.parser()
+                    .verifyWith(keyGenerator.getKey())
+                    .build();
+
+            Jws<Claims> jwsClaims = build.parseSignedClaims(tokenJwt);
+            Claims claims = jwsClaims.getPayload();
+            return claims.getSubject();
+
+        } catch (JwtException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 }
